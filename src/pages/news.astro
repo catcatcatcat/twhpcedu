@@ -91,14 +91,14 @@ const categories = [...new Set(allNews.map(article => article.data.category))];
     )}
 
     <!-- News Categories Filter -->
-    <section class="py-8 bg-white border-b">
+    <section class="py-8 bg-white border-b" id="news-filter">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-wrap gap-4 justify-center">
-          <button class="px-6 py-2 bg-primary-600 text-white rounded-full hover:bg-primary-700 transition-colors">
+          <button class="px-6 py-2 rounded-full transition-colors bg-primary-600 text-white" data-filter="all" aria-pressed="true">
             All News
           </button>
           {categories.map(category => (
-            <button class="px-6 py-2 bg-brand-border text-brand-secondary rounded-full hover:bg-brand-light transition-colors capitalize">
+            <button class="px-6 py-2 bg-brand-border text-brand-secondary rounded-full hover:bg-brand-light transition-colors capitalize" data-filter={category} aria-pressed="false">
               {category}
             </button>
           ))}
@@ -109,9 +109,9 @@ const categories = [...new Set(allNews.map(article => article.data.category))];
     <!-- News Grid -->
     <section class="py-16">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="news-grid">
           {otherNews.map((article) => (
-            <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+            <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow" data-category={article.data.category}>
               {article.data.image && (
                 <img 
                   src={article.data.image} 
@@ -156,6 +156,55 @@ const categories = [...new Set(allNews.map(article => article.data.category))];
         </div>
       </div>
     </section>
+
+    <!-- Client-side filter logic -->
+    <script>
+      // Simple filter for news grid
+      const filterContainer = document.querySelector('#news-filter');
+      const grid = document.querySelector('#news-grid');
+      if (filterContainer && grid) {
+        const buttons = Array.from(filterContainer.querySelectorAll('button[data-filter]'));
+        const cards = Array.from(grid.querySelectorAll('[data-category]'));
+
+        const setActive = (activeBtn) => {
+          buttons.forEach(btn => {
+            const isActive = btn === activeBtn;
+            btn.setAttribute('aria-pressed', String(isActive));
+            if (isActive) {
+              btn.classList.add('bg-primary-600','text-white');
+              btn.classList.remove('bg-brand-border','text-brand-secondary');
+            } else {
+              btn.classList.remove('bg-primary-600','text-white');
+              btn.classList.add('bg-brand-border','text-brand-secondary');
+            }
+          });
+        };
+
+        const applyFilter = (filter) => {
+          const showAll = !filter || filter === 'all';
+          cards.forEach(card => {
+            const cat = card.getAttribute('data-category') || '';
+            const match = showAll || cat === filter;
+            card.style.display = match ? '' : 'none';
+          });
+        };
+
+        buttons.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const filter = btn.getAttribute('data-filter') || 'all';
+            setActive(btn);
+            applyFilter(filter);
+          });
+        });
+
+        // Initialize default (respect any pre-marked active)
+        const defaultBtn = buttons.find(b => b.getAttribute('aria-pressed') === 'true') || buttons[0];
+        if (defaultBtn) {
+          setActive(defaultBtn);
+          applyFilter(defaultBtn.getAttribute('data-filter'));
+        }
+      }
+    </script>
 
     <!-- Newsletter Signup -->
     <section class="py-16 bg-primary-50">
