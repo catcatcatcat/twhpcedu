@@ -7,7 +7,7 @@ const newsCollection = defineCollection({
     description: z.string(),
     pubDate: z.date(),
     author: z.string(),
-    category: z.enum(['announcement', 'research', 'education', 'event']),
+    category: z.enum(['公告', '研究', '教育', '活動']),
     featured: z.boolean().default(false),
     image: z.string().optional(),
     tags: z.array(z.string()).default([]),

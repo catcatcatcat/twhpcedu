@@ -3,7 +3,7 @@ title: "高效能運算系列課程上線"
 description: "盼為台灣提升前端設計競爭力"
 pubDate: 2025-09-01
 author: "臺灣高效能運算教育協會"
-category: "education"
+category: "教育"
 featured: true
 image: "/images/News-COURSE.png
 "

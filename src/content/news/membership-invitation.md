@@ -3,7 +3,7 @@ title: "共創臺灣次世代 HPC 教育生態"
 description: "臺灣高效能運算教育協會成立，期待您的參與"
 pubDate: 2025-09-01
 author: "臺灣高效能運算教育協會"
-category: "education"
+category: "教育"
 featured: false
 image: "/images/News-EDUCATION.png"
 tags: ["高效能運算", "AI 晶片設計", "開源專案", "教育推廣"]

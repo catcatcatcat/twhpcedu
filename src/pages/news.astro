@@ -28,12 +28,12 @@ function formatDate(date: Date): string {
 const categories = [...new Set(allNews.map(article => article.data.category))];
 ---
 
-<Layout title="News & Updates - ACAL" description="Stay updated with the latest news, research breakthroughs, and announcements from the Association for Computing and Advanced Learning.">
+<Layout title="最新消息和活動 - ACAL" description="Stay updated with the latest news, research breakthroughs, and announcements from the Association for Computing and Advanced Learning.">
   <Header />
   <main class="min-h-screen bg-cream-50">
     <PageHero 
-      title="News & Updates"
-      subtitle="Stay informed about our latest research, events, and community developments"
+      title="最新消息和活動"
+      subtitle="第一手消息 × 精彩活動 × 技術交流"
     />
 
     <!-- Featured Article -->
@@ -41,10 +41,10 @@ const categories = [...new Set(allNews.map(article => article.data.category))];
       <section class="py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="mb-8">
-            <span class="inline-block bg-primary-600 text-white px-3 py-1 rounded-full text-sm font-medium mb-4">
+            <span class="hidden inline-block bg-primary-600 text-white px-3 py-1 rounded-full text-sm font-medium mb-4">
               Featured Article
             </span>
-            <h2 class="text-3xl font-bold text-dark-800 mb-4">Latest Highlights</h2>
+            <h2 class="text-3xl font-bold text-dark-800 mb-4">本期精選</h2>
           </div>
           
           <div class="bg-white rounded-lg shadow-lg overflow-hidden">
@@ -95,7 +95,7 @@ const categories = [...new Set(allNews.map(article => article.data.category))];
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-wrap gap-4 justify-center">
           <button class="px-6 py-2 rounded-full transition-colors bg-primary-600 text-white" data-filter="all" aria-pressed="true">
-            All News
+            全部
           </button>
           {categories.map(category => (
             <button class="px-6 py-2 bg-brand-border text-brand-secondary rounded-full hover:bg-brand-light transition-colors capitalize" data-filter={category} aria-pressed="false">
@@ -209,25 +209,25 @@ const categories = [...new Set(allNews.map(article => article.data.category))];
     <!-- Newsletter Signup -->
     <section class="py-16 bg-primary-50">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl font-bold text-dark-800 mb-4">Stay Updated</h2>
+        <h2 class="text-3xl font-bold text-dark-800 mb-4">隨時掌握最新動態</h2>
         <p class="text-xl text-dark-700 mb-8">
-          Subscribe to our newsletter for the latest news, research updates, and educational opportunities.
+          訂閱我們的電子報，獲取最新消息、研究成果與課程資訊。
         </p>
         <form class="max-w-md mx-auto flex gap-4">
           <input 
             type="email" 
-            placeholder="Enter your email address"
+            placeholder="輸入您的 Email 信箱"
             class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           />
           <button 
             type="submit"
             class="px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-medium"
           >
-            Subscribe
+            立即訂閱
           </button>
         </form>
         <p class="text-sm text-brand-muted mt-4">
-          We respect your privacy. Unsubscribe at any time.
+          我們重視您的選擇，您可隨時取消訂閱。
         </p>
       </div>
     </section>
